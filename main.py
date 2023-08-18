@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def serve_index():
-    return send_from_directory('.', 'templete/index.html')
+    return send_from_directory('.', '/templete/index.html')
 
 @app.route('/hello', methods=['GET'])
 def hello_world():
