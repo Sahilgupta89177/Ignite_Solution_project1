@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        #submit-btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello World API</h1>
+        <form id="language-form">
+            <label for="language">Choose a language:</label>
+            <br>
+            <select id="language" name="language">
+                <option value="English">English</option>
+                <option value="French">French</option>
+                <option value="Hindi">Hindi</option>
+            </select>
+            <br><br>
+            <button type="button" id="submit-btn">Get Hello Message</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const form = document.getElementById('language-form');
+        const resultText = document.getElementById('result');
+        const submitBtn = document.getElementById('submit-btn');
+
+        submitBtn.addEventListener('click', async () => {
+            const selectedLanguage = form.language.value;
+            const response = await fetch(`/hello?language=${selectedLanguage}`);
+            const data = await response.text();
+            resultText.textContent = data;
+        });
+    </script>
+</body>
+</html>
